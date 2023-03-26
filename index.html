@@ -409,8 +409,6 @@ A</code></pre>
 <pre class="r"><code>B&lt;-&quot;bye&quot;
 B</code></pre>
 <pre><code>## [1] &quot;bye&quot;</code></pre>
-<p>Likewise, lets import a file</p>
-<pre class="r"><code>village&lt;-read.csv(file=&quot;/Users/muditsingh/Desktop/Class/VillagedataUP.csv&quot;,header=T)</code></pre>
 <p>Do you want your storage and commands side by side. Not enjoying the
 non-GUI interface with limited options?</p>
 <p>That is why RStudio is popular among people working with R.</p>
@@ -605,13 +603,17 @@ where we can import data. Computer calls it directory.</p>
 <ul>
 <li>Importing single file from your computer</li>
 </ul>
-<pre class="r"><code>village&lt;-read.csv(file=&quot;/Users/muditsingh/Desktop/Class/VillagedataUP.csv&quot;,header=T)#Alternatively, use file menu</code></pre>
+<p>read.csv(file=“path to your file in computer”,header=T)</p>
+<p>You can also store the file by giving an object name (e.g. village)
+in the following way.</p>
+<p>village&lt;-read.csv(file=“path to your file in
+computer”,header=T)</p>
+<p>Alternatively, use file menu</p>
 <ul>
 <li>Downloading from the website</li>
 </ul>
-<pre class="r"><code>download.file(url=&quot;https://dataverse.harvard.edu/api/access/datafile/4805891&quot;,
-              destfile = &quot;df.csv&quot;,cacheOK=TRUE)
-webvillage&lt;-read.csv(&quot;df.csv&quot;,header=T,sep=&quot;\t&quot;,stringsAsFactors = FALSE)
+<pre class="r"><code>download.file(url=&quot;https://dataverse.harvard.edu/api/access/datafile/4805891&quot;,destfile = &quot;df.csv&quot;,cacheOK=TRUE)
+village&lt;-read.csv(&quot;df.csv&quot;,header=T,sep=&quot;\t&quot;,stringsAsFactors = FALSE)
 
 #Lets try another website sample
 download.file(url=&quot;https://dataverse.harvard.edu/api/access/datafile/:persistentId?persistentId=doi:10.7910/DVN/6PAHVM/DZ6ADX&quot;,destfile = &quot;df.csv&quot;,cacheOK=TRUE)
@@ -633,6 +635,26 @@ downloading files?</p>
 <pre class="r"><code>villages&lt;-list.files(path=&quot;/Users/muditsingh/Desktop/Class/learnR&quot;,pattern=&quot;*.csv&quot;)
 myfiles = lapply(villages, read.delim)
 file1&lt;-myfiles[[3]]#we got our village file</code></pre>
+</div>
+<div id="importing-different-file-format-from-your-computer" class="section level3">
+<h3>Importing different file format from your computer</h3>
+<p>There are a few popular packages that help us navigating different
+file types in R.</p>
+<p>Package? What are those?</p>
+<p>Packages are developed by advance R users that contain variety of
+functions to perform specific tasks.</p>
+<p>In order to use those functions, we first install the package and
+then load the library of all the functions of the package.</p>
+<p>This is usual way of using a package and associated functions in
+R.</p>
+<p>Lets install a package and call the functions of the package by
+using.</p>
+<p>install.packages(“haven”)#installing library(haven)#loading
+spss_sample&lt;-read_sav(file=“path to your file”)</p>
+<p>To save memory, we also need to uninstall/remove packages. Go to
+packages tab and uncheck the packages you want to remove. Alternatively,
+use detach command. See more about a function in search bar of help tab
+in the bottom right pane of RStudio.</p>
 </div>
 </div>
 <div id="explore-your-data" class="section level2">
@@ -658,8 +680,8 @@ rownames(village)[rownames(village)==&#39;1&#39;]&lt;-&#39;firstrow&#39;
 #sorting
 sort(village$Income,decreasing=TRUE)</code></pre>
 <p>Notice the [ ] symbol. [ ] tells that the object is a data frame. So,
-point to remember- we use small brackets () to apply functions and big
-brackets to [] denote a data frame (that we understand as a data
+point to remember- we use small brackets ( ) to apply functions and big
+brackets to [ ] denote a data frame (that we understand as a data
 file).</p>
 <p>Want to try more user friendly English language way instead of using
 bracket symbols? Install “dplyr” package. The package is like a grammar
@@ -670,10 +692,6 @@ renaming and filtering data from your data file.</p>
 <p>Unlike other program applications, the functions (select, rename
 etc.) we want to use will not automatically become straight forward
 available for our use.</p>
-<p>In order to use those functions, we first load the library of all the
-functions. This is usual way of using a package and associated function
-in R.</p>
-<p>Lets call the functions of the package by using library.</p>
 <pre class="r"><code>library(dplyr)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
@@ -768,8 +786,8 @@ barplot(table(village$Land_own, village$Gender),beside=T,col=c(&quot;green&quot;
 “ggplot2”. It is an improved version of “ggplot” package.</p>
 </div>
 </div>
-<div id="association-and-coorelation" class="section level2">
-<h2>Association and coorelation</h2>
+<div id="association-and-correlation" class="section level2">
+<h2>Association and correlation</h2>
 <div id="association" class="section level3">
 <h3>Association</h3>
 <p>From the above data we can test following hypothesis</p>
@@ -868,11 +886,8 @@ cor_table$p_value&lt;-cor$p.value
 cor_table$estimate&lt;-cor$estimate
 #we do not want &#39;t&#39; in row name while exporting the table
 write.csv(cor_table, &quot;cor_result.csv&quot;, row.names=FALSE)</code></pre>
-</div>
-</div>
-<div id="regression" class="section level2">
-<h2>Regression</h2>
 <p>To know more about R, please refer to <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-intro.html</a></p>
+</div>
 </div>
 </div>
 
