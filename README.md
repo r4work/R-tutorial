@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/426486370.svg)](https://zenodo.org/badge/latestdoi/426486370)
 # R-tutorial
 ## Data analysis with R studio- Beginner to Intermediate Level
 - This repository contains information on basics of working with R
